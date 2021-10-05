@@ -8,7 +8,7 @@ namespace MultiValueDictionary
 {
     public class CommandProcessor
     {
-        internal void Process(DictionaryCommand command, MultiValueDictionary<string, string> multiValueDictionary)
+        internal void Process(DictionaryCommand command, IMultivalueDictionary<string, string> multiValueDictionary)
         {
             switch (command.Command)
             {

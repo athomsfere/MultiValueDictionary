@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MultiValueDictionary
 {
-    class MultiValueDictionary<Tkey, TValue> : IMultivalueDictionary<Tkey, TValue>
+    public class MultiValueDictionary<Tkey, TValue> : IMultivalueDictionary<Tkey, TValue>
     {
         private Dictionary<Tkey, List<TValue>> multiDictionary = new Dictionary<Tkey, List<TValue>>();
         /// <summary>

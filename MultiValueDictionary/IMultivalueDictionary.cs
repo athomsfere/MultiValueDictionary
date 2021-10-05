@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MultiValueDictionary
 {
-    interface IMultivalueDictionary<T1, T2>
+    public interface IMultivalueDictionary<T1, T2>
     {
         IEnumerable<T1> GetKeys();
         IEnumerable<T1> GetKeyMembers(T1 key);

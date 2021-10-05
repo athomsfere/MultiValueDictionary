@@ -8,7 +8,7 @@ namespace MultiValueDictionary
     {
         static void Main(string[] args)
         {
-            MultiValueDictionary<string, string> multiValueDictionary = new MultiValueDictionary<string, string>();
+            IMultivalueDictionary<string, string> multiValueDictionary = new MultiValueDictionary<string, string>();
             Console.WriteLine(CommandConstants.Help);
             while (true)
             {
