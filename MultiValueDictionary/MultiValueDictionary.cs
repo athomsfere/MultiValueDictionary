@@ -89,7 +89,12 @@ namespace MultiValueDictionary
 
         public IEnumerable<Tkey> GetKeyMembers(Tkey key)
         {
-            return (IEnumerable<Tkey>)multiDictionary[key]?.ToList() ?? null;
+            
+            if (!multiDictionary.ContainsKey(key))
+            {
+                throw new ArgumentOutOfRangeException("Error, key does not exist");
+            }
+            return (IEnumerable<Tkey>)multiDictionary[key].ToList();
         }
 
         public IEnumerable<Tkey> GetKeys()

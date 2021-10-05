@@ -10,9 +10,15 @@ namespace MultiValueDictionary
     {
         internal void Process(DictionaryCommand command, IMultivalueDictionary<string, string> multiValueDictionary)
         {
+            bool hasKey = command.KeyName != null;
+            bool hasValue = command.Value != null;
             switch (command.Command)
             {
                 case CommandConstants.Add:
+                    if (!hasKey || !hasValue)
+                    {
+                        throw new ArgumentException("key and value required");
+                    }
                     multiValueDictionary.AddMember(command.KeyName, command.Value);
                     Console.WriteLine("Added");
                     break;
@@ -29,6 +35,10 @@ namespace MultiValueDictionary
                     WriteAllMembersAndKeysOrEmptySet(allItems);
                     break;
                 case CommandConstants.KeyExists:
+                    if (!hasKey)
+                    {
+                        throw new ArgumentException("value required");
+                    }
                     Console.WriteLine(multiValueDictionary.DoesKeyExist(command.KeyName));
                     break;
                 case CommandConstants.Keys:
@@ -36,17 +46,33 @@ namespace MultiValueDictionary
                     WriteAllOrEmptySet(keys);
                     break;
                 case CommandConstants.MemberExists:
+                    if (!hasKey || !hasValue)
+                    {
+                        throw new ArgumentException("key and value required");
+                    }
                     Console.WriteLine(multiValueDictionary.DoesMemberExist(command.KeyName, command.Value));
                     break;
                 case CommandConstants.Members:
+                    if (!hasKey)
+                    {
+                        throw new ArgumentException("key required");
+                    }
                     var keyMembers = multiValueDictionary.GetKeyMembers(command.KeyName).ToList();
                     CommandWriterHelpers.WriteAll(keyMembers);
                     break;
                 case CommandConstants.Remove:
+                    if (!hasKey || !hasValue)
+                    {
+                        throw new ArgumentException("key and value required");
+                    }
                     multiValueDictionary.RemoveMember(command.KeyName, command.Value);
                     Console.WriteLine("REMOVED");
                     break;
                 case CommandConstants.RemoveAll:
+                    if (!hasKey)
+                    {
+                        throw new ArgumentException("key required");
+                    }
                     multiValueDictionary.RemoveAllMembers(command.KeyName);
                     Console.WriteLine("REMOVED");
                     break;

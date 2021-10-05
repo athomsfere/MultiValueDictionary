@@ -10,9 +10,11 @@ namespace MultiValueDictionary
     {
         public static void WriteAll<T>(List<T> toWrite)
         {
+            int i = 1;
             toWrite.ForEach(e =>
             {
-                Console.WriteLine($"{toWrite.IndexOf(e) + 1}) {e}");
+                Console.WriteLine($"{i}) {e}");
+                i++;
             });
         }
 
